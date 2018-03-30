@@ -8,7 +8,7 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!--  Material Dashboard CSS    -->
     <link href="assets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
     <!--     Fonts and icons     -->
@@ -141,32 +141,32 @@
                                 <p class="category">New employees on 15th September, 2016</p>
                             </div>
                             <div class="card-content table-responsive">
-                                <table class="table table-hover">
+                                <table class="table table-hover" id="example">
                                     <thead class="text-warning">
                                         <th>S.No.</th>
-                                        <th>Startup Name</th>
                                         <th>Scheme</th>
+                                        <th>Number</th>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>1</td>
                                             <td>Dakota Rice</td>
-                                            <td>Niger</td>
+                                            <td>2346</td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
                                             <td>Minerva Hooper</td>
-                                            <td>Curaçao</td>
+                                            <td>6842</td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
                                             <td>Sage Rodriguez</td>
-                                            <td>Netherlands</td>
+                                            <td>6813</td>
                                         </tr>
                                         <tr>
                                             <td>4</td>
                                             <td>Philip Chaney</td>
-                                            <td>Korea, South</td>
+                                            <td>6812</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -177,10 +177,28 @@
             </div>
         </div>
     </div>
+    <div id="myModal" class="modal fade" role="dialog
+    ">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <!--   Core JS Files   -->
-<script src="assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
-<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="assets/js/material.min.js" type="text/javascript"></script>
 <!--  Charts Plugin -->
 <script src="assets/js/chartist.min.js"></script>
@@ -194,12 +212,19 @@
 <script src="assets/js/material-dashboard.js?v=1.2.0"></script>
 <script src="assets/js/demo.js"></script>
 <script type="text/javascript">
+    var modal = document.getElementById('myModal');
     $(document).ready(function() {
 
         // Javascript method's body can be found in assets/js/demos.js
         demo.initDashboardPageCharts();
 
     });
+    $(document).ready(function() {
+        $('#example tr').click(function() {
+            console.log('click worked');
+            $("#myModal").modal();
+        })
+    })
 </script>
 
 </html>
