@@ -60,20 +60,14 @@ demo = {
 
     var dataEmailsSubscriptionChart = {
       labels: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'Mai',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec'
+        '0-10 lac',
+        '10 lac-20 lac',
+        '20 lac-30 lac',
+        '30 lac-40 lac',
+        '40 lac-50 lac',
+        '50 lac-60 lac'
       ],
-      series: [[542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]]
+      series: [[542, 443, 320, 780, 553, 453]]
     };
     var optionsEmailsSubscriptionChart = {
       axisX: {
