@@ -33,24 +33,25 @@ demo = {
 
     /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
 
-    var dataCompletedTasksChart = { series: [5, 3, 4] };
+    var dataCompletedTasksChart = {
+      labels: ['Bananas', 'Apples', 'Grapes'],
+      series: [5, 3, 4]
+    };
 
     var sum = function(a, b) {
       return a + b;
     };
 
+    var optionsCompletedTasksChart = {
+      labelInterpolationFnc: function(value) {
+        return value[0];
+      }
+    };
+
     var completedTasksChart = new Chartist.Pie(
       '#completedTasksChart',
       dataCompletedTasksChart,
-      {
-        labelInterpolationFnc: function(value) {
-          return (
-            Math.round(
-              value / dataCompletedTasksChart.series.reduce(sum) * 100
-            ) + '%'
-          );
-        }
-      }
+      optionsCompletedTasksChart
     );
     // start animation for the Completed Tasks Chart - Line Chart
     md.startAnimationForLineChart(completedTasksChart);
