@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Analytics Dashboard</title>
+    <title>Startup Card</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -27,7 +27,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                <a class="navbar-brand" href="#"> Material Dashboard </a>
+                <a class="navbar-brand" href="#"> Startup Card </a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -55,13 +55,13 @@
                         </a>
                     </li>
                 </ul>
-                <form class="navbar-form navbar-right" role="search">
+                <form class="navbar-form navbar-right">
                     <div class="form-group  is-empty">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" placeholder="Search" id="search-input">
                         <span class="material-input"></span>
                     </div>
-                    <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                <i class="material-icons">search</i>
+                    <button class="btn btn-white btn-round btn-just-icon" id="search">
+                                <i class="material-icons" >search</i>
                                 <div class="ripple-container"></div>
                             </button>
                 </form>
@@ -78,7 +78,7 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header card-chart" data-background-color="orange">
+                            <div class="card-header card-chart card-round" data-background-color="orange">
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <div>
@@ -89,30 +89,59 @@
                                         <div class="card-content">
                                             <div>
                                                 <h4 class="card-title">StartUp Name</h4>
-                                                <p class="card-title-description">Forrest</p>
+                                                <p class="card-title-description" id="card-name">Name</p>
                                             </div>
                                             <br>
                                             <div>
                                                 <h4 class="card-title">Industry</h4>
-                                                <p class="card-title-description">Education & Technology</p>
+                                                <p class="card-title-description" id="card-industry">Industry Name</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
-                                        <img class="card-qr" src="assets/img/qr.png" alt="Qr Code">
-                                        <h4 id="card-image-title">3CCA39CA</h4>
+                                        <img class="card-qr" id="card-qr-image" src="assets/img/qr.png" alt="Qr Code">
+                                        <h4 id="card-image-title">ID</h4>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-content">
-                                <h4 class="title">Email Subscriptions</h4>
+                                <h4 class="title">Startup Auth Card</h4>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <p> </p>
+                    <div class="col-md-2">
+                        <p> </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p> </p>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header" data-background-color="red">
+                                <h4 class="title">Details</h4>
+                            </div>
+                            <div class="card-content table-responsive">
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th class="text-warning">Founders</th>
+                                        <td>Aryabhatta, Mukes</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-warning">Evaluation</th>
+                                        <td>50 Lacs</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-warning">Date Founded</th>
+                                        <td>11/9/2016</td>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
+                    </div>
+                    <div class="col-md-2">
+                        <p> </p>
                     </div>
                 </div>
             </div>
@@ -131,5 +160,12 @@
 <!-- Material Dashboard javascript methods -->
 <script src="assets/js/material-dashboard.js?v=1.2.0"></script>
 <script src="assets/js/demo.js"></script>
+<script>
+    $(document).ready(function() {
+        var value = window.location.hash;
+        value = value.substr(1);
+        demo.FetchCardData(value);
+    })
+</script>
 
 </html>

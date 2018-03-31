@@ -109,6 +109,40 @@ demo = {
 
     //start animation for the Emails Subscription Chart
     md.startAnimationForBarChart(emailsSubscriptionChart);
+  },
+
+  FetchCardData: function(value) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = this.responseText;
+        response = $.parseJSON(response);
+        $('#card-name').html(response.name);
+        $('#card-industry').html(response.sector);
+        $('#card-qr-image').attr('src', response.qr);
+        $('#card-image-title').html(response.uid);
+      }
+    };
+    xhttp.open('GET', 'http://122.176.81.234:8001/app/startups/' + value, true);
+    xhttp.send();
+  },
+  checkUser: function(value) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        if (response.detail === 'Not found.') {
+          alert('Startup Not Found');
+        } else {
+          windows.location.href =
+            'https://iamgrawal.github.io/AnalyticsPage/card.html#' +
+            this.response.uid;
+        }
+      } else {
+        console.log(this.status);
+      }
+    };
+    xhttp.open('GET', 'http://122.176.81.234:8001/app/startups/' + value, true);
+    xhttp.send();
   }
 };
 
@@ -191,3 +225,15 @@ apis = {
     xhttp.send();
   }
 };
+
+$('#search').click(function(e) {
+  e.preventDefault();
+  var str = $('#search-input')
+    .val()
+    .toUpperCase();
+  if (str === '') {
+    alert('Please Enter Input Id');
+  } else {
+    demo.checkUser();
+  }
+});
