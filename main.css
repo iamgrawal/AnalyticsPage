@@ -1,3 +1,41 @@
 body {
     overflow-x: hidden;
 }
+
+hr.card-hr {
+    border: 0;
+    height: 5px;
+    float: left;
+    width: 70%;
+    background-color: #730062;
+    border-radius: 3px;
+    margin: 0px;
+}
+
+.card-qr {
+    padding: 20px;
+    height: 80% !important;
+    width: auto !important;
+    align-content: center;
+}
+
+.card-title {
+    color: black;
+    padding-left: 25px;
+}
+
+.card-title-description {
+    font-size: 20px;
+    padding-left: 10%;
+    font-weight: bold;
+}
+
+.card-content {
+    padding-left: 25px;
+}
+
+#card-image-title {
+    text-align: center;
+    color: darkblue !important;
+    font-weight: bold;
+}
