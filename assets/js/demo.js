@@ -31,7 +31,7 @@ demo = {
         tension: 0
       }),
       low: 0,
-      high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+      high: 30, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
       chartPadding: {
         top: 0,
         right: 0,
@@ -79,7 +79,7 @@ demo = {
         showGrid: false
       },
       low: 0,
-      high: 1000,
+      high: 150,
       chartPadding: {
         top: 0,
         right: 5,
@@ -174,7 +174,7 @@ apis = {
           $('<tr>')
             .html(
               '<td>' +
-                i +
+                (i + 1) +
                 '</td><td><a href="' +
                 item.url +
                 '">' +
