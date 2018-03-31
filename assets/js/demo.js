@@ -130,12 +130,18 @@ demo = {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
+        var response = this.responseText;
+        response = $.parseJSON(response);
         if (response.detail === 'Not found.') {
           alert('Startup Not Found');
         } else {
-          windows.location.href =
-            'https://iamgrawal.github.io/AnalyticsPage/card.html#' +
-            this.response.uid;
+          $(document).ready(function() {
+            $(location).attr(
+              'href',
+              'https://iamgrawal.github.io/AnalyticsPage/card.html#' +
+                response.uid
+            );
+          });
         }
       } else {
         console.log(this.status);
@@ -234,6 +240,6 @@ $('#search').click(function(e) {
   if (str === '') {
     alert('Please Enter Input Id');
   } else {
-    demo.checkUser();
+    demo.checkUser(str);
   }
 });
