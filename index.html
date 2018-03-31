@@ -147,27 +147,7 @@
                                         <th>Scheme</th>
                                         <th>Number</th>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Dakota Rice</td>
-                                            <td>2346</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Minerva Hooper</td>
-                                            <td>6842</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Sage Rodriguez</td>
-                                            <td>6813</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Philip Chaney</td>
-                                            <td>6812</td>
-                                        </tr>
+                                    <tbody id="tableBody">
                                     </tbody>
                                 </table>
                             </div>
@@ -214,16 +194,9 @@
 <script type="text/javascript">
     var modal = document.getElementById('myModal');
     $(document).ready(function() {
-
-        // Javascript method's body can be found in assets/js/demos.js
         demo.initDashboardPageCharts();
-
-    });
-    $(document).ready(function() {
-        $('#example tr').click(function() {
-            console.log('click worked');
-            $("#myModal").modal();
-        })
+        var value = window.location.hash;
+        value = value.substr(1);
     })
 </script>
 

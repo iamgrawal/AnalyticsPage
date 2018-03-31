@@ -1,14 +1,31 @@
-type = ['', 'info', 'success', 'warning', 'danger'];
+var dataDailySalesChart = {
+  labels: [],
+  series: []
+};
+var seriesDailySalesChart = [];
+
+var dataCompletedTasksChart = {
+  labels: [],
+  series: []
+};
+
+var seriesEmailsSubscriptionChart = [];
+
+var dataEmailsSubscriptionChart = {
+  labels: [],
+  series: []
+};
 
 demo = {
   initDashboardPageCharts: function() {
-    /* ----------==========     Daily Sales Chart initialization    ==========---------- */
+    apis.FillLineGraphData();
+    apis.FillBarGraph();
+    apis.FillPieGraph();
+    apis.FillTable();
+  },
+  /* ----------==========     Daily Sales Chart initialization    ==========---------- */
 
-    dataDailySalesChart = {
-      labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-      series: [[12, 17, 7, 17, 23, 18, 38]]
-    };
-
+  initLineGraph: function() {
     optionsDailySalesChart = {
       lineSmooth: Chartist.Interpolation.cardinal({
         tension: 0
@@ -30,14 +47,11 @@ demo = {
     );
 
     md.startAnimationForLineChart(dailySalesChart);
+  },
 
-    /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
+  /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
 
-    var dataCompletedTasksChart = {
-      labels: ['Bananas', 'Apples', 'Grapes'],
-      series: [5, 3, 4]
-    };
-
+  initPieGraph: function() {
     var sum = function(a, b) {
       return a + b;
     };
@@ -55,20 +69,11 @@ demo = {
     );
     // start animation for the Completed Tasks Chart - Line Chart
     md.startAnimationForLineChart(completedTasksChart);
+  },
 
-    /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
+  /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
 
-    var dataEmailsSubscriptionChart = {
-      labels: [
-        '0-10 lac',
-        '10 lac-20 lac',
-        '20 lac-30 lac',
-        '30 lac-40 lac',
-        '40 lac-50 lac',
-        '50 lac-60 lac'
-      ],
-      series: [[542, 443, 320, 780, 553, 453]]
-    };
+  initBarGraph: function() {
     var optionsEmailsSubscriptionChart = {
       axisX: {
         showGrid: false
@@ -104,5 +109,85 @@ demo = {
 
     //start animation for the Emails Subscription Chart
     md.startAnimationForBarChart(emailsSubscriptionChart);
+  }
+};
+
+apis = {
+  FillLineGraphData: function() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = this.responseText;
+        response = $.parseJSON(response);
+        $.each(response, function(i, item) {
+          dataDailySalesChart.labels.push(item.day);
+          seriesDailySalesChart.push(parseInt(item.views));
+        });
+        dataDailySalesChart.series.push(seriesDailySalesChart);
+        demo.initLineGraph();
+      }
+    };
+    xhttp.open('GET', 'http://122.176.81.234:8001/app/line-graph', true);
+    xhttp.send();
+  },
+  FillBarGraph: function() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = this.responseText;
+        response = $.parseJSON(response);
+        $.each(response, function(i, item) {
+          dataEmailsSubscriptionChart.labels.push(item.range);
+          seriesEmailsSubscriptionChart.push(item.value);
+        });
+        dataEmailsSubscriptionChart.series.push(seriesEmailsSubscriptionChart);
+        demo.initBarGraph();
+      }
+    };
+    xhttp.open('GET', 'http://122.176.81.234:8001/app/bar-graph', true);
+    xhttp.send();
+  },
+  FillPieGraph: function() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = this.responseText;
+        response = $.parseJSON(response);
+        $.each(response, function(i, item) {
+          dataCompletedTasksChart.labels.push(item.tag);
+          dataCompletedTasksChart.series.push(item.value);
+        });
+        demo.initPieGraph();
+      }
+    };
+    xhttp.open('GET', 'http://122.176.81.234:8001/app/pie-chart', true);
+    xhttp.send();
+  },
+  FillTable: function() {
+    var xhttp = new XMLHttpRequest();
+    var value = window.location.hash;
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = this.responseText;
+        response = $.parseJSON(response);
+        $.each(response, function(i, item) {
+          $('<tr>')
+            .html(
+              '<td>' +
+                i +
+                '</td><td><a href="' +
+                item.url +
+                '">' +
+                item.title +
+                '</td><td>' +
+                item.count +
+                '</td></a>'
+            )
+            .appendTo('#tableBody');
+        });
+      }
+    };
+    xhttp.open('GET', 'http://122.176.81.234:8001/app/table', true);
+    xhttp.send();
   }
 };
